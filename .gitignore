@@ -1,0 +1,9 @@
+# Ignore Node.js dependencies
+node_modules
+
+# Ignore log files
+*.log
+.env
+temp.txt
+temporaryFile.txt
+#  generates test manifests

@@ -1,0 +1,18 @@
+{
+  "project": "example-project",
+  "generated_test_manifest": [
+    {
+      "api": "/health",
+      "method": "GET",
+      "tests_count": 1,
+      "notes": "Smoke test for health endpoint"
+    },
+    {
+      "api": "/login",
+      "method": "POST",
+      "tests_count": 8,
+      "test_files": ["tests/generated.test.js"]
+    }
+  ],
+  "notes": "This file was repurposed: it now contains a manifest of generated test suites."
+}

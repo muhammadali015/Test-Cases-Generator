@@ -1,0 +1,580 @@
+{
+  "e6dad9d9c1f1eef95356ea0e2a88e7fffd1f4701273f6479b165a4ace2fd185e": {
+    "result": {
+      "status_message": "Generated 3 test cases for POST /generated-endpoint",
+      "generated_test_cases": [
+        {
+          "description": "Valid input returns success response",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 201,
+            "message": "Request processed successfully"
+          }
+        },
+        {
+          "description": "Calling GET /generated-endpoint should return method not allowed",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "GET"
+          },
+          "expected": {
+            "status_code": 405,
+            "message": "Method Not Allowed"
+          }
+        },
+        {
+          "description": "Empty request body should fail validation",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 400,
+            "message": "Body cannot be empty"
+          }
+        }
+      ],
+      "test_cases": {
+        "framework": "junit5",
+        "target_language": "java",
+        "api": "/generated-endpoint",
+        "method": "POST",
+        "scenarios_count": 3
+      },
+      "coverage_analysis": "{\"api\":\"/generated-endpoint\",\"method\":\"POST\",\"total_generated_tests\":3,\"fields\":[],\"covered_scenarios\":[\"happy_path\",\"http_method_mismatch\",\"empty_body\"],\"missing_scenarios\":[],\"notes\":\"Coverage is inferred from generated scenarios only; no static analysis of controller code is performed.\"}",
+      "recommendations": "Use the generated junit5 suite as a starting point and refine assertions to match your actual response schema for POST /generated-endpoint. Add integration tests that hit the real database or stubbed repositories to cover persistence and query behavior. Introduce tests for failure modes of external services (e.g., timeouts, 5xx responses) if your handler calls upstream APIs. Consider splitting the generated suite into route-specific files (e.g., tests/auth/login.test.js) as your project grows.",
+      "ltm_hit": false,
+      "test_suite_zip_base64": "UEsDBBQAAAgIAMiweluJptTLkgEAAMMEAAAXAAAAdGVzdHMvZ2VuZXJhdGVkLnRlc3QuanPNk0Fr3DAQhe/7K4YcYhlS77akp7KFJiyBQlNoS++z0qxXVDtSNKOmJvS/F9nOspRQaC/pxRjPvKenb8Y2sihkuiskCuvxzWcyjZREWUm0ad8s7NiFKZ12dN0SU6rlxcKR2Oy3ZJobYsqo5KCKQYpXAoNFY9tcgGlh/RYeFjBWTfMVg3fgOZUaQktmASnWkghkkhRZqLkAlIHtiRgg0Jh6zlO9MKW2S7G6LvvHEC+IXYqex1tU3VHTCbEzDz/n73bmILAGvEc/uk8l+pHIqskknShqkbbTeEXm1erlLF4uwe7JfoMDiWBPIGUrmj33YPwOUiYh1vZ3t210A5yfw/vPH2+7qd/vhmOpreds7goGM4nmnuvIip499+bs0zy4lGNlRu6R3q6EMJy1Y8B6xyPxawyhBrvZfIEnOIHsYwluHgYcSPfRAUcFDCHek/ubafT052H8A/TL1etnh/5hgnIbFd5NUJ4CvTkkHY5/1njszHaHPsD3uvmoPvL/ut+Xq9Wzo76qFha5LuCWgCrTU9j18QtQSwECFAoUAAAICADIsHpbiabUy5IBAADDBAAAFwAAAAAAAAAAAAAApIEAAAAAdGVzdHMvZ2VuZXJhdGVkLnRlc3QuanNQSwUGAAAAAAEAAQBFAAAAxwEAAAAA",
+      "test_files": [
+        "tests/generated.test.js"
+      ]
+    },
+    "timestamp": "2025-11-26T17:06:16.851Z"
+  },
+  "e52562ea2ed73d980f79e141fcbd2ac61cf7c70a89a7eda993db75e7f282c2bc": {
+    "result": {
+      "status_message": "Generated 3 test cases for POST /generated-endpoint",
+      "generated_test_cases": [
+        {
+          "description": "Valid input returns success response",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 201,
+            "message": "Request processed successfully"
+          }
+        },
+        {
+          "description": "Calling GET /generated-endpoint should return method not allowed",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "GET"
+          },
+          "expected": {
+            "status_code": 405,
+            "message": "Method Not Allowed"
+          }
+        },
+        {
+          "description": "Empty request body should fail validation",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 400,
+            "message": "Body cannot be empty"
+          }
+        }
+      ],
+      "test_cases": {
+        "framework": "jest+supertest",
+        "target_language": "a",
+        "api": "/generated-endpoint",
+        "method": "POST",
+        "scenarios_count": 3
+      },
+      "coverage_analysis": "{\"api\":\"/generated-endpoint\",\"method\":\"POST\",\"total_generated_tests\":3,\"fields\":[],\"covered_scenarios\":[\"happy_path\",\"http_method_mismatch\",\"empty_body\"],\"missing_scenarios\":[],\"notes\":\"Coverage is inferred from generated scenarios only; no static analysis of controller code is performed.\"}",
+      "recommendations": "Use the generated jest+supertest suite as a starting point and refine assertions to match your actual response schema for POST /generated-endpoint. Add integration tests that hit the real database or stubbed repositories to cover persistence and query behavior. Introduce tests for failure modes of external services (e.g., timeouts, 5xx responses) if your handler calls upstream APIs. Consider splitting the generated suite into route-specific files (e.g., tests/auth/login.test.js) as your project grows.",
+      "ltm_hit": false,
+      "test_suite_zip_base64": "UEsDBBQAAAgIABKxeluJptTLkgEAAMMEAAAXAAAAdGVzdHMvZ2VuZXJhdGVkLnRlc3QuanPNk0Fr3DAQhe/7K4YcYhlS77akp7KFJiyBQlNoS++z0qxXVDtSNKOmJvS/F9nOspRQaC/pxRjPvKenb8Y2sihkuiskCuvxzWcyjZREWUm0ad8s7NiFKZ12dN0SU6rlxcKR2Oy3ZJobYsqo5KCKQYpXAoNFY9tcgGlh/RYeFjBWTfMVg3fgOZUaQktmASnWkghkkhRZqLkAlIHtiRgg0Jh6zlO9MKW2S7G6LvvHEC+IXYqex1tU3VHTCbEzDz/n73bmILAGvEc/uk8l+pHIqskknShqkbbTeEXm1erlLF4uwe7JfoMDiWBPIGUrmj33YPwOUiYh1vZ3t210A5yfw/vPH2+7qd/vhmOpreds7goGM4nmnuvIip499+bs0zy4lGNlRu6R3q6EMJy1Y8B6xyPxawyhBrvZfIEnOIHsYwluHgYcSPfRAUcFDCHek/ubafT052H8A/TL1etnh/5hgnIbFd5NUJ4CvTkkHY5/1njszHaHPsD3uvmoPvL/ut+Xq9Wzo76qFha5LuCWgCrTU9j18QtQSwECFAoUAAAICAASsXpbiabUy5IBAADDBAAAFwAAAAAAAAAAAAAApIEAAAAAdGVzdHMvZ2VuZXJhdGVkLnRlc3QuanNQSwUGAAAAAAEAAQBFAAAAxwEAAAAA",
+      "test_files": [
+        "tests/generated.test.js"
+      ]
+    },
+    "timestamp": "2025-11-26T17:08:37.085Z"
+  },
+  "f6a8f4c6726e4fa2b7e06f2bb8155e07821b111ed651f7869af864cbdcb83687": {
+    "result": {
+      "status_message": "Generated 3 test cases for POST /generated-endpoint",
+      "generated_test_cases": [
+        {
+          "description": "Valid input returns success response",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 201,
+            "message": "Request processed successfully"
+          }
+        },
+        {
+          "description": "Calling GET /generated-endpoint should return method not allowed",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "GET"
+          },
+          "expected": {
+            "status_code": 405,
+            "message": "Method Not Allowed"
+          }
+        },
+        {
+          "description": "Empty request body should fail validation",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 400,
+            "message": "Body cannot be empty"
+          }
+        }
+      ],
+      "test_cases": {
+        "framework": "jest+supertest",
+        "target_language": "j",
+        "api": "/generated-endpoint",
+        "method": "POST",
+        "scenarios_count": 3
+      },
+      "coverage_analysis": "{\"api\":\"/generated-endpoint\",\"method\":\"POST\",\"total_generated_tests\":3,\"fields\":[],\"covered_scenarios\":[\"happy_path\",\"http_method_mismatch\",\"empty_body\"],\"missing_scenarios\":[],\"notes\":\"Coverage is inferred from generated scenarios only; no static analysis of controller code is performed.\"}",
+      "recommendations": "Use the generated jest+supertest suite as a starting point and refine assertions to match your actual response schema for POST /generated-endpoint. Add integration tests that hit the real database or stubbed repositories to cover persistence and query behavior. Introduce tests for failure modes of external services (e.g., timeouts, 5xx responses) if your handler calls upstream APIs. Consider splitting the generated suite into route-specific files (e.g., tests/auth/login.test.js) as your project grows.",
+      "ltm_hit": false,
+      "test_suite_zip_base64": "UEsDBBQAAAgIALiyeluJptTLkgEAAMMEAAARAAAAZ2VuZXJhdGVkLnRlc3QuanPNk0Fr3DAQhe/7K4YcYhlS77akp7KFJiyBQlNoS++z0qxXVDtSNKOmJvS/F9nOspRQaC/pxRjPvKenb8Y2sihkuiskCuvxzWcyjZREWUm0ad8s7NiFKZ12dN0SU6rlxcKR2Oy3ZJobYsqo5KCKQYpXAoNFY9tcgGlh/RYeFjBWTfMVg3fgOZUaQktmASnWkghkkhRZqLkAlIHtiRgg0Jh6zlO9MKW2S7G6LvvHEC+IXYqex1tU3VHTCbEzDz/n73bmILAGvEc/uk8l+pHIqskknShqkbbTeEXm1erlLF4uwe7JfoMDiWBPIGUrmj33YPwOUiYh1vZ3t210A5yfw/vPH2+7qd/vhmOpreds7goGM4nmnuvIip499+bs0zy4lGNlRu6R3q6EMJy1Y8B6xyPxawyhBrvZfIEnOIHsYwluHgYcSPfRAUcFDCHek/ubafT052H8A/TL1etnh/5hgnIbFd5NUJ4CvTkkHY5/1njszHaHPsD3uvmoPvL/ut+Xq9Wzo76qFha5LuCWgCrTU9j18QtQSwMEFAAACAgAuLJ6W4mm1MuSAQAAwwQAABcAAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc82TQWvcMBCF7/srhhxiGVLvtqSnsoUmLIFCU2hL77PSrFdUO1I0o6Ym9L8X2c6ylFBoL+nFGM+8p6dvxjayKGS6KyQK6/HNZzKNlERZSbRp3yzs2IUpnXZ03RJTquXFwpHY7LdkmhtiyqjkoIpBilcCg0Vj21yAaWH9Fh4WMFZN8xWDd+A5lRpCS2YBKdaSCGSSFFmouQCUge2JGCDQmHrOU70wpbZLsbou+8cQL4hdip7HW1TdUdMJsTMPP+fvduYgsAa8Rz+6TyX6kciqySSdKGqRttN4RebV6uUsXi7B7sl+gwOJYE8gZSuaPfdg/A5SJiHW9ne3bXQDnJ/D+88fb7up3++GY6mt52zuCgYzieae68iKnj335uzTPLiUY2VG7pHeroQwnLVjwHrHI/FrDKEGu9l8gSc4gexjCW4eBhxI99EBRwUMId6T+5tp9PTnYfwD9MvV62eH/mGCchsV3k1QngK9OSQdjn/WeOzMdoc+wPe6+ag+8v+635er1bOjvqoWFrku4JaAKtNT2PXxC1BLAQIUChQAAAgIALiyeluJptTLkgEAAMMEAAARAAAAAAAAAAAAAACkgQAAAABnZW5lcmF0ZWQudGVzdC5qc1BLAQIUChQAAAgIALiyeluJptTLkgEAAMMEAAAXAAAAAAAAAAAAAACkgcEBAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc1BLBQYAAAAAAgACAIQAAACIAwAAAAA=",
+      "test_files": [
+        "tests/generated.test.js",
+        "generated.test.js"
+      ]
+    },
+    "timestamp": "2025-11-26T17:21:48.735Z"
+  },
+  "561337b8e275b10fcdeb277dc8cecd89b6eb2362647325c7d0877639d948c12d": {
+    "result": {
+      "status_message": "Generated 3 test cases for POST /generated-endpoint",
+      "generated_test_cases": [
+        {
+          "description": "Valid input returns success response",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 201,
+            "message": "Request processed successfully"
+          }
+        },
+        {
+          "description": "Calling GET /generated-endpoint should return method not allowed",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "GET"
+          },
+          "expected": {
+            "status_code": 405,
+            "message": "Method Not Allowed"
+          }
+        },
+        {
+          "description": "Empty request body should fail validation",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 400,
+            "message": "Body cannot be empty"
+          }
+        }
+      ],
+      "test_cases": {
+        "framework": "jest+supertest",
+        "target_language": "curl -method post -uri http://localhost:3001/execute `        -headers @{ \"content-type\" = \"application/json\" } `        -body '{          \"message_id\": \"local-test-1\",          \"sender\": \"supervisor\",          \"recipient\": \"agent\",          \"type\": \"task_assignment\",          \"results/task\": {            \"task_type\": \"generate_test_cases\",            \"payload\": {              \"api\": \"/login\",              \"method\": \"post\",              \"fields\": [\"email\", \"password\"],              \"requires_auth\": true            }          },          \"timestamp\": \"2025-11-26t12:00:00z\"        }'",
+        "api": "/generated-endpoint",
+        "method": "POST",
+        "scenarios_count": 3
+      },
+      "coverage_analysis": "{\"api\":\"/generated-endpoint\",\"method\":\"POST\",\"total_generated_tests\":3,\"fields\":[],\"covered_scenarios\":[\"happy_path\",\"http_method_mismatch\",\"empty_body\"],\"missing_scenarios\":[],\"notes\":\"Coverage is inferred from generated scenarios only; no static analysis of controller code is performed.\"}",
+      "recommendations": "Use the generated jest+supertest suite as a starting point and refine assertions to match your actual response schema for POST /generated-endpoint. Add integration tests that hit the real database or stubbed repositories to cover persistence and query behavior. Introduce tests for failure modes of external services (e.g., timeouts, 5xx responses) if your handler calls upstream APIs. Consider splitting the generated suite into route-specific files (e.g., tests/auth/login.test.js) as your project grows.",
+      "ltm_hit": false,
+      "test_suite_zip_base64": "UEsDBBQAAAgIAImzeluJptTLkgEAAMMEAAARAAAAZ2VuZXJhdGVkLnRlc3QuanPNk0Fr3DAQhe/7K4YcYhlS77akp7KFJiyBQlNoS++z0qxXVDtSNKOmJvS/F9nOspRQaC/pxRjPvKenb8Y2sihkuiskCuvxzWcyjZREWUm0ad8s7NiFKZ12dN0SU6rlxcKR2Oy3ZJobYsqo5KCKQYpXAoNFY9tcgGlh/RYeFjBWTfMVg3fgOZUaQktmASnWkghkkhRZqLkAlIHtiRgg0Jh6zlO9MKW2S7G6LvvHEC+IXYqex1tU3VHTCbEzDz/n73bmILAGvEc/uk8l+pHIqskknShqkbbTeEXm1erlLF4uwe7JfoMDiWBPIGUrmj33YPwOUiYh1vZ3t210A5yfw/vPH2+7qd/vhmOpreds7goGM4nmnuvIip499+bs0zy4lGNlRu6R3q6EMJy1Y8B6xyPxawyhBrvZfIEnOIHsYwluHgYcSPfRAUcFDCHek/ubafT052H8A/TL1etnh/5hgnIbFd5NUJ4CvTkkHY5/1njszHaHPsD3uvmoPvL/ut+Xq9Wzo76qFha5LuCWgCrTU9j18QtQSwMEFAAACAgAibN6W4mm1MuSAQAAwwQAABcAAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc82TQWvcMBCF7/srhhxiGVLvtqSnsoUmLIFCU2hL77PSrFdUO1I0o6Ym9L8X2c6ylFBoL+nFGM+8p6dvxjayKGS6KyQK6/HNZzKNlERZSbRp3yzs2IUpnXZ03RJTquXFwpHY7LdkmhtiyqjkoIpBilcCg0Vj21yAaWH9Fh4WMFZN8xWDd+A5lRpCS2YBKdaSCGSSFFmouQCUge2JGCDQmHrOU70wpbZLsbou+8cQL4hdip7HW1TdUdMJsTMPP+fvduYgsAa8Rz+6TyX6kciqySSdKGqRttN4RebV6uUsXi7B7sl+gwOJYE8gZSuaPfdg/A5SJiHW9ne3bXQDnJ/D+88fb7up3++GY6mt52zuCgYzieae68iKnj335uzTPLiUY2VG7pHeroQwnLVjwHrHI/FrDKEGu9l8gSc4gexjCW4eBhxI99EBRwUMId6T+5tp9PTnYfwD9MvV62eH/mGCchsV3k1QngK9OSQdjn/WeOzMdoc+wPe6+ag+8v+635er1bOjvqoWFrku4JaAKtNT2PXxC1BLAQIUChQAAAgIAImzeluJptTLkgEAAMMEAAARAAAAAAAAAAAAAACkgQAAAABnZW5lcmF0ZWQudGVzdC5qc1BLAQIUChQAAAgIAImzeluJptTLkgEAAMMEAAAXAAAAAAAAAAAAAACkgcEBAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc1BLBQYAAAAAAgACAIQAAACIAwAAAAA=",
+      "test_files": [
+        "tests/generated.test.js",
+        "generated.test.js"
+      ]
+    },
+    "timestamp": "2025-11-26T17:28:19.145Z"
+  },
+  "8dc318443b9e74870de28451db56d97c4dd3aae4b54ebf3eb6343bde74df346a": {
+    "result": {
+      "status_message": "Generated 3 test cases for POST /generated-endpoint",
+      "generated_test_cases": [
+        {
+          "description": "Valid input returns success response",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 201,
+            "message": "Request processed successfully"
+          }
+        },
+        {
+          "description": "Calling GET /generated-endpoint should return method not allowed",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "GET"
+          },
+          "expected": {
+            "status_code": 405,
+            "message": "Method Not Allowed"
+          }
+        },
+        {
+          "description": "Empty request body should fail validation",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 400,
+            "message": "Body cannot be empty"
+          }
+        }
+      ],
+      "test_cases": {
+        "framework": "jest+supertest",
+        "target_language": "a",
+        "api": "/generated-endpoint",
+        "method": "POST",
+        "scenarios_count": 3
+      },
+      "coverage_analysis": "{\"api\":\"/generated-endpoint\",\"method\":\"POST\",\"total_generated_tests\":3,\"fields\":[],\"covered_scenarios\":[\"happy_path\",\"http_method_mismatch\",\"empty_body\"],\"missing_scenarios\":[],\"notes\":\"Coverage is inferred from generated scenarios only; no static analysis of controller code is performed.\"}",
+      "recommendations": "Use the generated jest+supertest suite as a starting point and refine assertions to match your actual response schema for POST /generated-endpoint. Add integration tests that hit the real database or stubbed repositories to cover persistence and query behavior. Introduce tests for failure modes of external services (e.g., timeouts, 5xx responses) if your handler calls upstream APIs. Consider splitting the generated suite into route-specific files (e.g., tests/auth/login.test.js) as your project grows.",
+      "ltm_hit": false,
+      "test_suite_zip_base64": "UEsDBBQAAAgIAOmzeluJptTLkgEAAMMEAAARAAAAZ2VuZXJhdGVkLnRlc3QuanPNk0Fr3DAQhe/7K4YcYhlS77akp7KFJiyBQlNoS++z0qxXVDtSNKOmJvS/F9nOspRQaC/pxRjPvKenb8Y2sihkuiskCuvxzWcyjZREWUm0ad8s7NiFKZ12dN0SU6rlxcKR2Oy3ZJobYsqo5KCKQYpXAoNFY9tcgGlh/RYeFjBWTfMVg3fgOZUaQktmASnWkghkkhRZqLkAlIHtiRgg0Jh6zlO9MKW2S7G6LvvHEC+IXYqex1tU3VHTCbEzDz/n73bmILAGvEc/uk8l+pHIqskknShqkbbTeEXm1erlLF4uwe7JfoMDiWBPIGUrmj33YPwOUiYh1vZ3t210A5yfw/vPH2+7qd/vhmOpreds7goGM4nmnuvIip499+bs0zy4lGNlRu6R3q6EMJy1Y8B6xyPxawyhBrvZfIEnOIHsYwluHgYcSPfRAUcFDCHek/ubafT052H8A/TL1etnh/5hgnIbFd5NUJ4CvTkkHY5/1njszHaHPsD3uvmoPvL/ut+Xq9Wzo76qFha5LuCWgCrTU9j18QtQSwMEFAAACAgA6bN6W4mm1MuSAQAAwwQAABcAAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc82TQWvcMBCF7/srhhxiGVLvtqSnsoUmLIFCU2hL77PSrFdUO1I0o6Ym9L8X2c6ylFBoL+nFGM+8p6dvxjayKGS6KyQK6/HNZzKNlERZSbRp3yzs2IUpnXZ03RJTquXFwpHY7LdkmhtiyqjkoIpBilcCg0Vj21yAaWH9Fh4WMFZN8xWDd+A5lRpCS2YBKdaSCGSSFFmouQCUge2JGCDQmHrOU70wpbZLsbou+8cQL4hdip7HW1TdUdMJsTMPP+fvduYgsAa8Rz+6TyX6kciqySSdKGqRttN4RebV6uUsXi7B7sl+gwOJYE8gZSuaPfdg/A5SJiHW9ne3bXQDnJ/D+88fb7up3++GY6mt52zuCgYzieae68iKnj335uzTPLiUY2VG7pHeroQwnLVjwHrHI/FrDKEGu9l8gSc4gexjCW4eBhxI99EBRwUMId6T+5tp9PTnYfwD9MvV62eH/mGCchsV3k1QngK9OSQdjn/WeOzMdoc+wPe6+ag+8v+635er1bOjvqoWFrku4JaAKtNT2PXxC1BLAQIUChQAAAgIAOmzeluJptTLkgEAAMMEAAARAAAAAAAAAAAAAACkgQAAAABnZW5lcmF0ZWQudGVzdC5qc1BLAQIUChQAAAgIAOmzeluJptTLkgEAAMMEAAAXAAAAAAAAAAAAAACkgcEBAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc1BLBQYAAAAAAgACAIQAAACIAwAAAAA=",
+      "test_files": [
+        "tests/generated.test.js",
+        "generated.test.js"
+      ]
+    },
+    "timestamp": "2025-11-26T17:31:18.672Z"
+  },
+  "4dae6fd688303e8461ef0de6a8d2e2c3c3a8d6ca50a3231862513b9603fe9e7d": {
+    "result": {
+      "status_message": "Generated 3 test cases for POST /generated-endpoint",
+      "generated_test_cases": [
+        {
+          "description": "Valid input returns success response",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 201,
+            "message": "Request processed successfully"
+          }
+        },
+        {
+          "description": "Calling GET /generated-endpoint should return method not allowed",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "GET"
+          },
+          "expected": {
+            "status_code": 405,
+            "message": "Method Not Allowed"
+          }
+        },
+        {
+          "description": "Empty request body should fail validation",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 400,
+            "message": "Body cannot be empty"
+          }
+        }
+      ],
+      "test_cases": {
+        "framework": "jest+supertest",
+        "target_language": "hi",
+        "api": "/generated-endpoint",
+        "method": "POST",
+        "scenarios_count": 3
+      },
+      "coverage_analysis": "{\"api\":\"/generated-endpoint\",\"method\":\"POST\",\"total_generated_tests\":3,\"fields\":[],\"covered_scenarios\":[\"happy_path\",\"http_method_mismatch\",\"empty_body\"],\"missing_scenarios\":[],\"notes\":\"Coverage is inferred from generated scenarios only; no static analysis of controller code is performed.\"}",
+      "recommendations": "Use the generated jest+supertest suite as a starting point and refine assertions to match your actual response schema for POST /generated-endpoint. Add integration tests that hit the real database or stubbed repositories to cover persistence and query behavior. Introduce tests for failure modes of external services (e.g., timeouts, 5xx responses) if your handler calls upstream APIs. Consider splitting the generated suite into route-specific files (e.g., tests/auth/login.test.js) as your project grows.",
+      "ltm_hit": false,
+      "test_suite_zip_base64": "UEsDBBQAAAgIAIi0eluJptTLkgEAAMMEAAARAAAAZ2VuZXJhdGVkLnRlc3QuanPNk0Fr3DAQhe/7K4YcYhlS77akp7KFJiyBQlNoS++z0qxXVDtSNKOmJvS/F9nOspRQaC/pxRjPvKenb8Y2sihkuiskCuvxzWcyjZREWUm0ad8s7NiFKZ12dN0SU6rlxcKR2Oy3ZJobYsqo5KCKQYpXAoNFY9tcgGlh/RYeFjBWTfMVg3fgOZUaQktmASnWkghkkhRZqLkAlIHtiRgg0Jh6zlO9MKW2S7G6LvvHEC+IXYqex1tU3VHTCbEzDz/n73bmILAGvEc/uk8l+pHIqskknShqkbbTeEXm1erlLF4uwe7JfoMDiWBPIGUrmj33YPwOUiYh1vZ3t210A5yfw/vPH2+7qd/vhmOpreds7goGM4nmnuvIip499+bs0zy4lGNlRu6R3q6EMJy1Y8B6xyPxawyhBrvZfIEnOIHsYwluHgYcSPfRAUcFDCHek/ubafT052H8A/TL1etnh/5hgnIbFd5NUJ4CvTkkHY5/1njszHaHPsD3uvmoPvL/ut+Xq9Wzo76qFha5LuCWgCrTU9j18QtQSwMEFAAACAgAiLR6W4mm1MuSAQAAwwQAABcAAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc82TQWvcMBCF7/srhhxiGVLvtqSnsoUmLIFCU2hL77PSrFdUO1I0o6Ym9L8X2c6ylFBoL+nFGM+8p6dvxjayKGS6KyQK6/HNZzKNlERZSbRp3yzs2IUpnXZ03RJTquXFwpHY7LdkmhtiyqjkoIpBilcCg0Vj21yAaWH9Fh4WMFZN8xWDd+A5lRpCS2YBKdaSCGSSFFmouQCUge2JGCDQmHrOU70wpbZLsbou+8cQL4hdip7HW1TdUdMJsTMPP+fvduYgsAa8Rz+6TyX6kciqySSdKGqRttN4RebV6uUsXi7B7sl+gwOJYE8gZSuaPfdg/A5SJiHW9ne3bXQDnJ/D+88fb7up3++GY6mt52zuCgYzieae68iKnj335uzTPLiUY2VG7pHeroQwnLVjwHrHI/FrDKEGu9l8gSc4gexjCW4eBhxI99EBRwUMId6T+5tp9PTnYfwD9MvV62eH/mGCchsV3k1QngK9OSQdjn/WeOzMdoc+wPe6+ag+8v+635er1bOjvqoWFrku4JaAKtNT2PXxC1BLAQIUChQAAAgIAIi0eluJptTLkgEAAMMEAAARAAAAAAAAAAAAAACkgQAAAABnZW5lcmF0ZWQudGVzdC5qc1BLAQIUChQAAAgIAIi0eluJptTLkgEAAMMEAAAXAAAAAAAAAAAAAACkgcEBAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc1BLBQYAAAAAAgACAIQAAACIAwAAAAA=",
+      "test_files": [
+        "tests/generated.test.js",
+        "generated.test.js"
+      ]
+    },
+    "timestamp": "2025-11-26T17:36:16.708Z"
+  },
+  "3ebd88aa9fd07f59a98fe365607bf6f97c293e1b04847815877a6a29074d00fa": {
+    "result": {
+      "status_message": "Generated 3 test cases for POST /generated-endpoint",
+      "generated_test_cases": [
+        {
+          "description": "Valid input returns success response",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 201,
+            "message": "Request processed successfully"
+          }
+        },
+        {
+          "description": "Calling GET /generated-endpoint should return method not allowed",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "GET"
+          },
+          "expected": {
+            "status_code": 405,
+            "message": "Method Not Allowed"
+          }
+        },
+        {
+          "description": "Empty request body should fail validation",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 400,
+            "message": "Body cannot be empty"
+          }
+        }
+      ],
+      "test_cases": {
+        "framework": "jest+supertest",
+        "target_language": "h",
+        "api": "/generated-endpoint",
+        "method": "POST",
+        "scenarios_count": 3
+      },
+      "coverage_analysis": "{\"api\":\"/generated-endpoint\",\"method\":\"POST\",\"total_generated_tests\":3,\"fields\":[],\"covered_scenarios\":[\"happy_path\",\"http_method_mismatch\",\"empty_body\"],\"missing_scenarios\":[],\"notes\":\"Coverage is inferred from generated scenarios only; no static analysis of controller code is performed.\"}",
+      "recommendations": "Use the generated jest+supertest suite as a starting point and refine assertions to match your actual response schema for POST /generated-endpoint. Add integration tests that hit the real database or stubbed repositories to cover persistence and query behavior. Introduce tests for failure modes of external services (e.g., timeouts, 5xx responses) if your handler calls upstream APIs. Consider splitting the generated suite into route-specific files (e.g., tests/auth/login.test.js) as your project grows.",
+      "ltm_hit": false,
+      "test_suite_zip_base64": "UEsDBBQAAAgIAMe0eluJptTLkgEAAMMEAAARAAAAZ2VuZXJhdGVkLnRlc3QuanPNk0Fr3DAQhe/7K4YcYhlS77akp7KFJiyBQlNoS++z0qxXVDtSNKOmJvS/F9nOspRQaC/pxRjPvKenb8Y2sihkuiskCuvxzWcyjZREWUm0ad8s7NiFKZ12dN0SU6rlxcKR2Oy3ZJobYsqo5KCKQYpXAoNFY9tcgGlh/RYeFjBWTfMVg3fgOZUaQktmASnWkghkkhRZqLkAlIHtiRgg0Jh6zlO9MKW2S7G6LvvHEC+IXYqex1tU3VHTCbEzDz/n73bmILAGvEc/uk8l+pHIqskknShqkbbTeEXm1erlLF4uwe7JfoMDiWBPIGUrmj33YPwOUiYh1vZ3t210A5yfw/vPH2+7qd/vhmOpreds7goGM4nmnuvIip499+bs0zy4lGNlRu6R3q6EMJy1Y8B6xyPxawyhBrvZfIEnOIHsYwluHgYcSPfRAUcFDCHek/ubafT052H8A/TL1etnh/5hgnIbFd5NUJ4CvTkkHY5/1njszHaHPsD3uvmoPvL/ut+Xq9Wzo76qFha5LuCWgCrTU9j18QtQSwMEFAAACAgAx7R6W4mm1MuSAQAAwwQAABcAAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc82TQWvcMBCF7/srhhxiGVLvtqSnsoUmLIFCU2hL77PSrFdUO1I0o6Ym9L8X2c6ylFBoL+nFGM+8p6dvxjayKGS6KyQK6/HNZzKNlERZSbRp3yzs2IUpnXZ03RJTquXFwpHY7LdkmhtiyqjkoIpBilcCg0Vj21yAaWH9Fh4WMFZN8xWDd+A5lRpCS2YBKdaSCGSSFFmouQCUge2JGCDQmHrOU70wpbZLsbou+8cQL4hdip7HW1TdUdMJsTMPP+fvduYgsAa8Rz+6TyX6kciqySSdKGqRttN4RebV6uUsXi7B7sl+gwOJYE8gZSuaPfdg/A5SJiHW9ne3bXQDnJ/D+88fb7up3++GY6mt52zuCgYzieae68iKnj335uzTPLiUY2VG7pHeroQwnLVjwHrHI/FrDKEGu9l8gSc4gexjCW4eBhxI99EBRwUMId6T+5tp9PTnYfwD9MvV62eH/mGCchsV3k1QngK9OSQdjn/WeOzMdoc+wPe6+ag+8v+635er1bOjvqoWFrku4JaAKtNT2PXxC1BLAQIUChQAAAgIAMe0eluJptTLkgEAAMMEAAARAAAAAAAAAAAAAACkgQAAAABnZW5lcmF0ZWQudGVzdC5qc1BLAQIUChQAAAgIAMe0eluJptTLkgEAAMMEAAAXAAAAAAAAAAAAAACkgcEBAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc1BLBQYAAAAAAgACAIQAAACIAwAAAAA=",
+      "test_files": [
+        "tests/generated.test.js",
+        "generated.test.js"
+      ]
+    },
+    "timestamp": "2025-11-26T17:38:15.957Z"
+  },
+  "90c82b96d756c7ff7195c4e216213cd41c0f6d885b1e26bb57cd40f0485732a1": {
+    "result": {
+      "status_message": "Generated 3 test cases for POST /generated-endpoint",
+      "generated_test_cases": [
+        {
+          "description": "Valid input returns success response",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 201,
+            "message": "Request processed successfully"
+          }
+        },
+        {
+          "description": "Calling GET /generated-endpoint should return method not allowed",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "GET"
+          },
+          "expected": {
+            "status_code": 405,
+            "message": "Method Not Allowed"
+          }
+        },
+        {
+          "description": "Empty request body should fail validation",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 400,
+            "message": "Body cannot be empty"
+          }
+        }
+      ],
+      "test_cases": {
+        "framework": "jest+supertest",
+        "target_language": "javascript",
+        "api": "/generated-endpoint",
+        "method": "POST",
+        "scenarios_count": 3
+      },
+      "coverage_analysis": "{\"api\":\"/generated-endpoint\",\"method\":\"POST\",\"total_generated_tests\":3,\"fields\":[],\"covered_scenarios\":[\"happy_path\",\"http_method_mismatch\",\"empty_body\"],\"missing_scenarios\":[],\"notes\":\"Coverage is inferred from generated scenarios only; no static analysis of controller code is performed.\"}",
+      "recommendations": "Use the generated jest+supertest suite as a starting point and refine assertions to match your actual response schema for POST /generated-endpoint. Add integration tests that hit the real database or stubbed repositories to cover persistence and query behavior. Introduce tests for failure modes of external services (e.g., timeouts, 5xx responses) if your handler calls upstream APIs. Consider splitting the generated suite into route-specific files (e.g., tests/auth/login.test.js) as your project grows.",
+      "ltm_hit": false,
+      "test_suite_zip_base64": "UEsDBBQAAAgIAES6eluJptTLkgEAAMMEAAARAAAAZ2VuZXJhdGVkLnRlc3QuanPNk0Fr3DAQhe/7K4YcYhlS77akp7KFJiyBQlNoS++z0qxXVDtSNKOmJvS/F9nOspRQaC/pxRjPvKenb8Y2sihkuiskCuvxzWcyjZREWUm0ad8s7NiFKZ12dN0SU6rlxcKR2Oy3ZJobYsqo5KCKQYpXAoNFY9tcgGlh/RYeFjBWTfMVg3fgOZUaQktmASnWkghkkhRZqLkAlIHtiRgg0Jh6zlO9MKW2S7G6LvvHEC+IXYqex1tU3VHTCbEzDz/n73bmILAGvEc/uk8l+pHIqskknShqkbbTeEXm1erlLF4uwe7JfoMDiWBPIGUrmj33YPwOUiYh1vZ3t210A5yfw/vPH2+7qd/vhmOpreds7goGM4nmnuvIip499+bs0zy4lGNlRu6R3q6EMJy1Y8B6xyPxawyhBrvZfIEnOIHsYwluHgYcSPfRAUcFDCHek/ubafT052H8A/TL1etnh/5hgnIbFd5NUJ4CvTkkHY5/1njszHaHPsD3uvmoPvL/ut+Xq9Wzo76qFha5LuCWgCrTU9j18QtQSwMEFAAACAgARLp6W4mm1MuSAQAAwwQAABcAAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc82TQWvcMBCF7/srhhxiGVLvtqSnsoUmLIFCU2hL77PSrFdUO1I0o6Ym9L8X2c6ylFBoL+nFGM+8p6dvxjayKGS6KyQK6/HNZzKNlERZSbRp3yzs2IUpnXZ03RJTquXFwpHY7LdkmhtiyqjkoIpBilcCg0Vj21yAaWH9Fh4WMFZN8xWDd+A5lRpCS2YBKdaSCGSSFFmouQCUge2JGCDQmHrOU70wpbZLsbou+8cQL4hdip7HW1TdUdMJsTMPP+fvduYgsAa8Rz+6TyX6kciqySSdKGqRttN4RebV6uUsXi7B7sl+gwOJYE8gZSuaPfdg/A5SJiHW9ne3bXQDnJ/D+88fb7up3++GY6mt52zuCgYzieae68iKnj335uzTPLiUY2VG7pHeroQwnLVjwHrHI/FrDKEGu9l8gSc4gexjCW4eBhxI99EBRwUMId6T+5tp9PTnYfwD9MvV62eH/mGCchsV3k1QngK9OSQdjn/WeOzMdoc+wPe6+ag+8v+635er1bOjvqoWFrku4JaAKtNT2PXxC1BLAQIUChQAAAgIAES6eluJptTLkgEAAMMEAAARAAAAAAAAAAAAAACkgQAAAABnZW5lcmF0ZWQudGVzdC5qc1BLAQIUChQAAAgIAES6eluJptTLkgEAAMMEAAAXAAAAAAAAAAAAAACkgcEBAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc1BLBQYAAAAAAgACAIQAAACIAwAAAAA=",
+      "test_files": [
+        "tests/generated.test.js",
+        "generated.test.js"
+      ]
+    },
+    "timestamp": "2025-11-26T18:18:10.074Z"
+  },
+  "2560438971baeb0536d370b04aefb5f7d5f45bf88823d0a1c3f12474f559a77d": {
+    "result": {
+      "status_message": "Generated 3 test cases for POST /generated-endpoint",
+      "generated_test_cases": [
+        {
+          "description": "Valid input returns success response",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 201,
+            "message": "Request processed successfully"
+          }
+        },
+        {
+          "description": "Calling GET /generated-endpoint should return method not allowed",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "GET"
+          },
+          "expected": {
+            "status_code": 405,
+            "message": "Method Not Allowed"
+          }
+        },
+        {
+          "description": "Empty request body should fail validation",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 400,
+            "message": "Body cannot be empty"
+          }
+        }
+      ],
+      "test_cases": {
+        "framework": "jest+supertest",
+        "target_language": "h",
+        "api": "/generated-endpoint",
+        "method": "POST",
+        "scenarios_count": 3
+      },
+      "coverage_analysis": "{\"api\":\"/generated-endpoint\",\"method\":\"POST\",\"total_generated_tests\":3,\"fields\":[],\"covered_scenarios\":[\"happy_path\",\"http_method_mismatch\",\"empty_body\"],\"missing_scenarios\":[],\"notes\":\"Coverage is inferred from generated scenarios only; no static analysis of controller code is performed.\"}",
+      "recommendations": "Use the generated jest+supertest suite as a starting point and refine assertions to match your actual response schema for POST /generated-endpoint. Add integration tests that hit the real database or stubbed repositories to cover persistence and query behavior. Introduce tests for failure modes of external services (e.g., timeouts, 5xx responses) if your handler calls upstream APIs. Consider splitting the generated suite into route-specific files (e.g., tests/auth/login.test.js) as your project grows.",
+      "ltm_hit": false,
+      "test_suite_zip_base64": "UEsDBBQAAAgIAGK6eluJptTLkgEAAMMEAAARAAAAZ2VuZXJhdGVkLnRlc3QuanPNk0Fr3DAQhe/7K4YcYhlS77akp7KFJiyBQlNoS++z0qxXVDtSNKOmJvS/F9nOspRQaC/pxRjPvKenb8Y2sihkuiskCuvxzWcyjZREWUm0ad8s7NiFKZ12dN0SU6rlxcKR2Oy3ZJobYsqo5KCKQYpXAoNFY9tcgGlh/RYeFjBWTfMVg3fgOZUaQktmASnWkghkkhRZqLkAlIHtiRgg0Jh6zlO9MKW2S7G6LvvHEC+IXYqex1tU3VHTCbEzDz/n73bmILAGvEc/uk8l+pHIqskknShqkbbTeEXm1erlLF4uwe7JfoMDiWBPIGUrmj33YPwOUiYh1vZ3t210A5yfw/vPH2+7qd/vhmOpreds7goGM4nmnuvIip499+bs0zy4lGNlRu6R3q6EMJy1Y8B6xyPxawyhBrvZfIEnOIHsYwluHgYcSPfRAUcFDCHek/ubafT052H8A/TL1etnh/5hgnIbFd5NUJ4CvTkkHY5/1njszHaHPsD3uvmoPvL/ut+Xq9Wzo76qFha5LuCWgCrTU9j18QtQSwMEFAAACAgAYrp6W4mm1MuSAQAAwwQAABcAAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc82TQWvcMBCF7/srhhxiGVLvtqSnsoUmLIFCU2hL77PSrFdUO1I0o6Ym9L8X2c6ylFBoL+nFGM+8p6dvxjayKGS6KyQK6/HNZzKNlERZSbRp3yzs2IUpnXZ03RJTquXFwpHY7LdkmhtiyqjkoIpBilcCg0Vj21yAaWH9Fh4WMFZN8xWDd+A5lRpCS2YBKdaSCGSSFFmouQCUge2JGCDQmHrOU70wpbZLsbou+8cQL4hdip7HW1TdUdMJsTMPP+fvduYgsAa8Rz+6TyX6kciqySSdKGqRttN4RebV6uUsXi7B7sl+gwOJYE8gZSuaPfdg/A5SJiHW9ne3bXQDnJ/D+88fb7up3++GY6mt52zuCgYzieae68iKnj335uzTPLiUY2VG7pHeroQwnLVjwHrHI/FrDKEGu9l8gSc4gexjCW4eBhxI99EBRwUMId6T+5tp9PTnYfwD9MvV62eH/mGCchsV3k1QngK9OSQdjn/WeOzMdoc+wPe6+ag+8v+635er1bOjvqoWFrku4JaAKtNT2PXxC1BLAQIUChQAAAgIAGK6eluJptTLkgEAAMMEAAARAAAAAAAAAAAAAACkgQAAAABnZW5lcmF0ZWQudGVzdC5qc1BLAQIUChQAAAgIAGK6eluJptTLkgEAAMMEAAAXAAAAAAAAAAAAAACkgcEBAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc1BLBQYAAAAAAgACAIQAAACIAwAAAAA=",
+      "test_files": [
+        "tests/generated.test.js",
+        "generated.test.js"
+      ]
+    },
+    "timestamp": "2025-11-26T18:19:05.300Z"
+  },
+  "7c6f6e0a5623cd8212cdc2705f99547dff866c251323646d64678d3931a628cc": {
+    "result": {
+      "status_message": "Generated 3 test cases for POST /generated-endpoint",
+      "generated_test_cases": [
+        {
+          "description": "Valid input returns success response",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 201,
+            "message": "Request processed successfully"
+          }
+        },
+        {
+          "description": "Calling GET /generated-endpoint should return method not allowed",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "GET"
+          },
+          "expected": {
+            "status_code": 405,
+            "message": "Method Not Allowed"
+          }
+        },
+        {
+          "description": "Empty request body should fail validation",
+          "input": {
+            "api": "/generated-endpoint",
+            "method": "POST",
+            "body": {}
+          },
+          "expected": {
+            "status_code": 400,
+            "message": "Body cannot be empty"
+          }
+        }
+      ],
+      "test_cases": {
+        "framework": "jest+supertest",
+        "target_language": "hi",
+        "api": "/generated-endpoint",
+        "method": "POST",
+        "scenarios_count": 3
+      },
+      "coverage_analysis": "{\"api\":\"/generated-endpoint\",\"method\":\"POST\",\"total_generated_tests\":3,\"fields\":[],\"covered_scenarios\":[\"happy_path\",\"http_method_mismatch\",\"empty_body\"],\"missing_scenarios\":[],\"notes\":\"Coverage is inferred from generated scenarios only; no static analysis of controller code is performed.\"}",
+      "recommendations": "Use the generated jest+supertest suite as a starting point and refine assertions to match your actual response schema for POST /generated-endpoint. Add integration tests that hit the real database or stubbed repositories to cover persistence and query behavior. Introduce tests for failure modes of external services (e.g., timeouts, 5xx responses) if your handler calls upstream APIs. Consider splitting the generated suite into route-specific files (e.g., tests/auth/login.test.js) as your project grows.",
+      "ltm_hit": false,
+      "test_suite_zip_base64": "UEsDBBQAAAgIAM+7eluJptTLkgEAAMMEAAARAAAAZ2VuZXJhdGVkLnRlc3QuanPNk0Fr3DAQhe/7K4YcYhlS77akp7KFJiyBQlNoS++z0qxXVDtSNKOmJvS/F9nOspRQaC/pxRjPvKenb8Y2sihkuiskCuvxzWcyjZREWUm0ad8s7NiFKZ12dN0SU6rlxcKR2Oy3ZJobYsqo5KCKQYpXAoNFY9tcgGlh/RYeFjBWTfMVg3fgOZUaQktmASnWkghkkhRZqLkAlIHtiRgg0Jh6zlO9MKW2S7G6LvvHEC+IXYqex1tU3VHTCbEzDz/n73bmILAGvEc/uk8l+pHIqskknShqkbbTeEXm1erlLF4uwe7JfoMDiWBPIGUrmj33YPwOUiYh1vZ3t210A5yfw/vPH2+7qd/vhmOpreds7goGM4nmnuvIip499+bs0zy4lGNlRu6R3q6EMJy1Y8B6xyPxawyhBrvZfIEnOIHsYwluHgYcSPfRAUcFDCHek/ubafT052H8A/TL1etnh/5hgnIbFd5NUJ4CvTkkHY5/1njszHaHPsD3uvmoPvL/ut+Xq9Wzo76qFha5LuCWgCrTU9j18QtQSwMEFAAACAgAz7t6W4mm1MuSAQAAwwQAABcAAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc82TQWvcMBCF7/srhhxiGVLvtqSnsoUmLIFCU2hL77PSrFdUO1I0o6Ym9L8X2c6ylFBoL+nFGM+8p6dvxjayKGS6KyQK6/HNZzKNlERZSbRp3yzs2IUpnXZ03RJTquXFwpHY7LdkmhtiyqjkoIpBilcCg0Vj21yAaWH9Fh4WMFZN8xWDd+A5lRpCS2YBKdaSCGSSFFmouQCUge2JGCDQmHrOU70wpbZLsbou+8cQL4hdip7HW1TdUdMJsTMPP+fvduYgsAa8Rz+6TyX6kciqySSdKGqRttN4RebV6uUsXi7B7sl+gwOJYE8gZSuaPfdg/A5SJiHW9ne3bXQDnJ/D+88fb7up3++GY6mt52zuCgYzieae68iKnj335uzTPLiUY2VG7pHeroQwnLVjwHrHI/FrDKEGu9l8gSc4gexjCW4eBhxI99EBRwUMId6T+5tp9PTnYfwD9MvV62eH/mGCchsV3k1QngK9OSQdjn/WeOzMdoc+wPe6+ag+8v+635er1bOjvqoWFrku4JaAKtNT2PXxC1BLAQIUChQAAAgIAM+7eluJptTLkgEAAMMEAAARAAAAAAAAAAAAAACkgQAAAABnZW5lcmF0ZWQudGVzdC5qc1BLAQIUChQAAAgIAM+7eluJptTLkgEAAMMEAAAXAAAAAAAAAAAAAACkgcEBAAB0ZXN0cy9nZW5lcmF0ZWQudGVzdC5qc1BLBQYAAAAAAgACAIQAAACIAwAAAAA=",
+      "test_files": [
+        "tests/generated.test.js",
+        "generated.test.js"
+      ]
+    },
+    "timestamp": "2025-11-26T18:30:30.274Z"
+  }
+}

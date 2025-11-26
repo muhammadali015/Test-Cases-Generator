@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" class="light"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Case Agent (Supervisor-Ready)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- We don't need JSZip anymore, the agent handles it! -->
+    <style>
+        /* Simple scrollbar for chat */
+        #chat-window::-webkit-scrollbar { width: 6px; }
+        #chat-window::-webkit-scrollbar-track { background: transparent; }
+        #chat-window::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 6px; }
+        #chat-window::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+        .dark #chat-window::-webkit-scrollbar-thumb { background: #4b5563; }
+        .dark #chat-window::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+
+        /* --- Custom Loader Animations --- */
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 90%; }
+        }
+        .scanner-line {
+            animation: scan 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        .pulse-text {
+            animation: pulse-text 3s ease-in-out infinite;
+        }
+        /* --- End of Loader CSS --- */
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
+
+    <div class="w-full max-w-3xl mx-auto h-screen bg-white dark:bg-gray-800 shadow-2xl flex flex-col p-0">
+        
+        <div class="flex-shrink-0 border-b border-gray-200 dark:border-gray-700 p-4 flex items-center justify-between">
+            <div>
+                <h1 class="text-xl font-bold text-gray-800 dark:text-white">Test Case Generator Agent</h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400">SUPERVISOR-COMPLIANT UI</p>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-1.636 4.95l-.707.707a1 1 0 01-1.414-1.414l.707.707a1 1 0 011.414 1.414zm-12.02-4.95a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
+                
+                <button id="reset-button" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" title="Reset Demo">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9H0v5m11.168-9.832A8.001 8.001 0 0123.418 9H24V4m-4.582 13H24v-5h-.582a8.001 8.001 0 01-15.356-2H0v5h4.582c.352.618.78 1.19 1.282 1.707L0 24h13.168l3-3L20 24h4l-3.832-5.832z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="chat-window" class="flex-grow my-0 space-y-6 overflow-y-auto p-6 bg-white dark:bg-gray-800">
+            <!-- Chat messages will be injected here -->
+        </div>
+
+        <div id="input-area" class="flex-shrink-0 border-t border-gray-200 dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-900">
+            <div id="input-container" class="flex space-x-2">
+                <!-- Input elements will be injected here -->
+            </div>
+            <!-- (UPDATED) Point to the correct Render URL -->
+            <p class="text-xs text-center text-gray-400 dark:text-gray-500 mt-2">Agent backend target: 
+                <a href="https://api-testcase-agent.onrender.com/execute" target="_blank" rel="noopener noreferrer" class="underline">https://api-testcase-agent.onrender.com/execute</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // === DOM Elements ===
+        const chatWindow = document.getElementById('chat-window');
+        const inputContainer = document.getElementById('input-container');
+        const resetButton = document.getElementById('reset-button');
+        const themeToggle = document.getElementById('theme-toggle');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+        // === Agent endpoint configuration (single source of truth) ===
+        const AGENT_BASE_URL = 'https://api-testcase-agent.onrender.com';
+        const AGENT_EXECUTE_PATH = '/execute';
+        const AGENT_URL = AGENT_BASE_URL + AGENT_EXECUTE_PATH;
+        console.info('Using agent URL:', AGENT_URL);
+
+        // === Agent State ===
+        let agentState = {
+            language: null,
+            inputMode: null,
+            gitRepoUrl: null,
+            zipFileBase64: null,
+            codeFilesBase64: [], 
+            existingDoc: null
+        };
+        let chatState = 'START';
+
+        // === Dark Mode Logic ===
+        function setMode(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                lightIcon.classList.remove('hidden');
+                darkIcon.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
+            }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setMode(true);
+        } else {
+            setMode(false);
+        }
+        themeToggle.onclick = () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            setMode(isDark);
+        };
+
+        // === Chatbot UI Logic ===
+        function addBotMessage(html) {
+            const msgWrapper = document.createElement('div');
+            msgWrapper.className = 'flex justify-start';
+            msgWrapper.innerHTML = `
+                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gray-600 dark:bg-gray-500 text-white flex items-center justify-center text-sm font-bold">A</div>
+                <div class="ml-3 bot-bubble p-3 rounded-lg max-w-[80%] bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white">
+                    ${html}
+                </div>
+            `;
+            chatWindow.appendChild(msgWrapper);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const msgWrapper = document.createElement('div');
+            msgWrapper.className = 'flex justify-end';
+            msgWrapper.innerHTML = `
+                <div class="mr-3 user-bubble p-3 rounded-lg max-w-[80%] bg-blue-600 text-white">
+                    ${text}
+                </div>
+                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold">U</div>
+            `;
+            chatWindow.appendChild(msgWrapper);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        // === Base64 File Readers ===
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64String = reader.result.split(',')[1];
+                    resolve(base64String);
+                };
+                reader.onerror = (error) => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+        
+        function readFileAsText(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    resolve(reader.result);
+                };
+                reader.onerror = (error) => reject(error);
+                reader.readAsText(file);
+            });
+        }
+
+
+        // === Chat Flow Logic ===
+        function renderInput() {
+            inputContainer.innerHTML = ''; // Clear previous inputs
+
+            switch (chatState) {
+                case 'ASK_LANG':
+                case 'ASK_MODE':
+                case 'ASK_GIT_URL':
+                    const textInput = document.createElement('input');
+                    textInput.type = 'text';
+                    textInput.id = 'text-input';
+                    textInput.className = 'flex-grow border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500';
+                    textInput.placeholder = 'Type your answer...';
+                    textInput.onkeydown = (e) => { if (e.key === 'Enter') handleSubmit(); };
+                    inputContainer.appendChild(textInput);
+                    
+                    const sendButton = document.createElement('button');
+                    sendButton.id = 'send-button';
+                    sendButton.className = 'px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex-shrink-0';
+                    sendButton.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>`;
+                    sendButton.onclick = handleSubmit;
+                    inputContainer.appendChild(sendButton);
+                    break;
+                
+                case 'ASK_ZIP':
+                case 'ASK_FILES':
+                case 'ASK_DOC':
+                    const fileInput = document.createElement('input');
+                    fileInput.type = 'file';
+                    fileInput.id = 'file-input';
+                    fileInput.className = 'block w-full text-sm text-gray-500 dark:text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 dark:file:bg-blue-900 file:text-blue-700 dark:file:text-blue-300 hover:file:bg-blue-100 dark:hover:file:bg-blue-800';
+                    
+                    if (chatState === 'ASK_FILES') fileInput.multiple = true;
+                    if (chatState === 'ASK_ZIP') fileInput.accept = '.zip';
+                    if (chatState === 'ASK_DOC') fileInput.accept = '.json, application/json';
+                    
+                    inputContainer.appendChild(fileInput);
+
+                    const uploadButton = document.createElement('button');
+                    uploadButton.id = 'upload-button';
+                    uploadButton.textContent = 'Upload';
+                    uploadButton.className = 'px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex-shrink-0';
+                    uploadButton.onclick = () => handleSubmit(fileInput.files);
+                    inputContainer.appendChild(uploadButton);
+
+                    if (chatState === 'ASK_DOC') {
+                         const skipButton = document.createElement('button');
+                        skipButton.textContent = 'Skip';
+                        skipButton.className = 'px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex-shrink-0';
+                        skipButton.onclick = () => handleSubmit(null, true); // 'skip' flag
+                        inputContainer.appendChild(skipButton);
+                    }
+                    break;
+                
+                case 'ANALYZING':
+                    inputContainer.innerHTML = `
+                        <div class="w-full flex flex-col items-center space-y-3 p-4">
+                            <p id="loader-text" class="font-medium text-blue-600 dark:text-blue-400">Agent is analyzing... please wait.</p>
+                            <div class="w-full h-32 bg-gray-900 dark:bg-black p-4 rounded-lg overflow-hidden relative border border-gray-700">
+                                <div class="scanner-line absolute left-0 w-full h-1 bg-blue-400 opacity-60 shadow-lg" style="box-shadow: 0 0 10px #2563eb, 0 0 5px #2563eb;"></div>
+                                <pre><code class="text-gray-600 dark:text-gray-700 pulse-text text-xs select-none">
+&lt;router.get('/api/...', (req, res) => {
+  // ...fetching 
+  res.json(...);
+});
+def get_all_items():
+    return db.query(Item).all()
+                                </code></pre>
+                            </div>
+                        </div>`;
+                    break;
+                
+                case 'DONE':
+                    const newRunButton = document.createElement('button');
+                    newRunButton.textContent = 'Start New Test Case Task';
+                    newRunButton.className = 'w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors';
+                    newRunButton.onclick = reset;
+                    inputContainer.appendChild(newRunButton);
+                    break;
+            }
+        }
+
+        async function handleSubmit(files = null, skip = false) {
+            let userInput = '';
+            
+            try {
+                switch (chatState) {
+                    case 'ASK_LANG':
+                        userInput = document.getElementById('text-input').value.trim().toLowerCase();
+                        if (!userInput) return;
+                        addUserMessage(userInput);
+                        agentState.language = userInput;
+                        chatState = 'ASK_MODE';
+                        addBotMessage("Got it. What's your input type? (Type: <b class='text-blue-500'>git</b>, <b class='text-blue-500'>zip</b>, or <b class='text-blue-500'>files</b>)");
+                        break;
+
+                    case 'ASK_MODE':
+                        userInput = document.getElementById('text-input').value.trim().toLowerCase();
+                        if (!['git', 'zip', 'files'].includes(userInput)) {
+                            addBotMessage("Sorry, please type 'git', 'zip', or 'files'.");
+                            return;
+                        }
+                        addUserMessage(userInput);
+                        agentState.inputMode = userInput;
+                        if (userInput === 'git') {
+                            chatState = 'ASK_GIT_URL';
+                            addBotMessage("Please paste the full <b class='text-blue-500'>HTTPS .git URL</b> of the repository.");
+                        } else if (userInput === 'zip') {
+                            chatState = 'ASK_ZIP';
+                            addBotMessage("Please upload your project's <b class='text-blue-500'>.zip file</b>.");
+                        } else if (userInput === 'files') {
+                            chatState = 'ASK_FILES';
+                            addBotMessage("Please upload one or more <b class='text-blue-500'>code files</b>.");
+                        }
+                        break;
+                    
+                    case 'ASK_GIT_URL':
+                        userInput = document.getElementById('text-input').value.trim();
+                        if (!userInput.endsWith('.git')) {
+                            addBotMessage("That doesn't look like a valid .git URL. Please try again.");
+                            return;
+                        }
+                        addUserMessage(userInput);
+                        agentState.gitRepoUrl = userInput;
+                        chatState = 'ASK_DOC';
+                        addBotMessage("Great. Do you have <b class='text-blue-500'>existing requirements JSON</b> to reference? (Optional)");
+                        break;
+                    
+                    case 'ASK_ZIP':
+                        if (!files || files.length === 0) return;
+                        addUserMessage(`Uploaded: ${files[0].name}`);
+                        agentState.zipFileBase64 = await readFileAsBase64(files[0]);
+                        chatState = 'ASK_DOC';
+                        addBotMessage("Great. Do you have <b class='text-blue-500'>existing requirements JSON</b> to reference? (Optional)");
+                        break;
+
+                    case 'ASK_FILES':
+                        if (!files || files.length === 0) return;
+                        addUserMessage(`Uploaded: ${files.length} file(s)`);
+                        agentState.codeFilesBase64 = [];
+                        for (const file of files) {
+                            const contentBase64 = await readFileAsBase64(file);
+                            agentState.codeFilesBase64.push({
+                                file_path: file.name,
+                                content_base64: contentBase64
+                            });
+                        }
+                        chatState = 'ASK_DOC';
+                        addBotMessage("Great. Do you have <b class='text-blue-500'>existing requirements JSON</b> to reference? (Optional)");
+                        break;
+
+                    case 'ASK_DOC':
+                        if (skip) {
+                            addUserMessage("No additional context provided.");
+                            agentState.existingDoc = null;
+                        } else {
+                            if (!files || files.length === 0) return;
+                            addUserMessage(`Uploaded: ${files[0].name}`);
+                            const docText = await readFileAsText(files[0]);
+                            agentState.existingDoc = JSON.parse(docText);
+                        }
+                        chatState = 'ANALYZING';
+                        renderInput();
+                        await callAgent();
+                        break;
+                }
+            } catch (error) {
+                console.error("HandleSubmit Error:", error);
+                addBotMessage(`<b class="text-red-500">Error:</b> ${error.message}. Please check your file and try again.`);
+                if (chatState === 'ANALYZING') {
+                     chatState = 'ASK_DOC';
+                }
+            } finally {
+                if (chatState !== 'ANALYZING') {
+                    renderInput();
+                }
+            }
+        }
+
+        async function callAgent() {
+            // 1. Build the "results/task" payload
+            const taskPayload = {
+                language: agentState.language,
+                git_repo_url: agentState.inputMode === 'git' ? agentState.gitRepoUrl : null,
+                zip_file_base64: agentState.inputMode === 'zip' ? agentState.zipFileBase64 : null,
+                code_files_base64: agentState.inputMode === 'files' ? agentState.codeFilesBase64 : [],
+                existing_test_manifest: agentState.existingDoc,
+                search_patterns: null
+            };
+
+            // 2. Build the full Supervisor Handshake
+            const supervisorMessage = {
+                message_id: `ui-msg-${Date.now()}`,
+                sender: "supervisor_ui",
+                recipient: "testcase_generator_agent",
+                type: "task_assignment",
+                timestamp: new Date().toISOString(),
+                "results/task": taskPayload
+            };
+
+            // Use configured AGENT_URL (change AGENT_BASE_URL above if needed)
+            const agentUrl = AGENT_URL;
+            // const agentUrl = 'http://localhost:3000/execute'; // For local testing (override if necessary)
+            
+            try {
+                const response = await fetch(agentUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(supervisorMessage), 
+                });
+
+                const result = await response.json();
+                
+                if (!response.ok || result.status === 'failed') {
+                    const errorDetails = result["results/task"]?.error_details || result.message || 'The agent returned an unknown error.';
+                    throw new Error(errorDetails);
+                }
+
+                const taskResult = result["results/task"];
+                const message = taskResult.status_message || "Task completed.";
+
+                // (NEW!) Check for LTM Hit
+                const ltm_hit = taskResult.ltm_hit || false;
+                if (ltm_hit) {
+                    addBotMessage(`<b>LTM HIT!</b> ${message}`);
+                    const loader = document.getElementById('loader-text'); if (loader) loader.textContent = 'LTM HIT! Instant response.';
+                } else {
+                    addBotMessage(`<b>Success!</b> ${message}`);
+                }
+
+                // If the agent returned a zipped test suite, show download link
+                const zipBase64 = taskResult.test_suite_zip_base64;
+                const testFiles = taskResult.test_files || [];
+                if (zipBase64) {
+                    addBotMessage('A runnable test-suite ZIP has been generated. Click to download.');
+
+                    const downloadBtn = document.createElement('button');
+                    downloadBtn.className = 'px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700';
+                    downloadBtn.textContent = 'Download Test Suite (ZIP)';
+                    downloadBtn.onclick = () => {
+                        const byteChars = atob(zipBase64);
+                        const byteNumbers = new Array(byteChars.length);
+                        for (let i = 0; i < byteChars.length; i++) byteNumbers[i] = byteChars.charCodeAt(i);
+                        const byteArray = new Uint8Array(byteNumbers);
+                        const blob = new Blob([byteArray], { type: 'application/zip' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'generated-tests.zip';
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        URL.revokeObjectURL(url);
+                    };
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'mt-3';
+                    wrapper.appendChild(downloadBtn);
+                    chatWindow.appendChild(wrapper);
+
+                    if (testFiles.length > 0) {
+                        const list = document.createElement('ul');
+                        list.className = 'mt-2 text-sm text-gray-400';
+                        testFiles.forEach(f => {
+                            const li = document.createElement('li');
+                            li.textContent = f;
+                            list.appendChild(li);
+                        });
+                        chatWindow.appendChild(list);
+                    }
+                } else {
+                    // Fallback: show generated_test_cases JSON in formatted block
+                    const generated = taskResult.generated_test_cases || [];
+                    if (generated.length > 0) {
+                        const pre = document.createElement('pre');
+                        pre.className = 'bg-gray-900 dark:bg-black p-4 mt-2 rounded-lg text-sm overflow-x-auto border border-gray-700';
+                        pre.innerHTML = `<code class="text-white">${JSON.stringify(generated, null, 2)}</code>`;
+                        chatWindow.appendChild(pre);
+                    }
+                }
+
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            } catch (error) {
+                console.error('Fetch error:', error);
+                let errMsg = error.message;
+                if (error.message.includes('Failed to fetch')) {
+                    errMsg = `<b>Connection Error!</b><br>Could not connect to the agent at <code>${AGENT_URL}</code>. Check that the agent process is running, that your supervisor/AGENT_URL is set to this base URL + <code>/execute</code>, and that there is no port mismatch or CORS blocking requests.`;
+                }
+                addBotMessage(`<b class="text-red-500">Error:</b> ${errMsg}`);
+            } finally {
+                chatState = 'DONE';
+                renderInput();
+            }
+        }
+
+        function reset() {
+            chatWindow.innerHTML = '';
+            agentState = {
+                language: null, inputMode: null, gitRepoUrl: null,
+                zipFileBase64: null, codeFilesBase64: [], existingDoc: null
+            };
+            chatState = 'ASK_LANG';
+            addBotMessage("Hi! I'm the upgraded UI for the **Supervisor-Compliant** Agent. What <b class='text-blue-500'>language</b> is the code? (e.g., javascript, python, java)");
+            renderInput();
+        }
+
+        // --- Start the chat ---
+        resetButton.onclick = reset;
+        reset(); 
+    </script>
+</body>
+</html>

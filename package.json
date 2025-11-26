@@ -1,0 +1,28 @@
+{
+  "name": "testcase-generator-agent",
+  "version": "1.0.0",
+  "description": "An AI agent that generates backend test suites from supervisor tasks.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "spm",
+    "test-generator"
+  ],
+  "author": "Taimoor Raza Asif",
+  "license": "ISC",
+  "dependencies": {
+    "adm-zip": "^0.5.14",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "glob": "^10.4.2",
+    "node-fetch": "^2.6.1",
+    "simple-git": "^3.25.0",
+    "uuid": "^10.0.0"
+  }
+}
